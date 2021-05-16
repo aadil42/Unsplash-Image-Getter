@@ -1,0 +1,148 @@
+// use variables starting with $variable_name
+// use nesting instaed of ul li a { your style for a tag}
+// use @use_fileName of diffrent css components in main css file
+// use mixins and functions
+// use extends to extends base style in diffrent style blocks  and the block you extend; start the block_name with %
+// use operator to calculate diffrent things
+// use if else statments with mixins
+// use lighten and darken function to make elements dark and light it takes 2 arguments lighten(style, percentOfLightning_darkening)
+// use lightness and darkness function to check the percentage of lightness and darkness
+// use eachLoop in sass yes you can use loops in sass..!!
+
+// note : & inside of a nested style refers to the parent class/id/tag/etc name
+// note : when you make a scss component and bring it in the main file you need to name that file starting with '_'
+// so all the files can't get compile and only one main file will get compile
+
+// style variables///////////////////////////////////////////////////////////////////////////////
+$PrimaryBG: #023047;
+$PrimaryFontColor: #f1faee;
+$white: white;
+$Big-fontSize: 3rem;
+$Small-fontSize: 1.4rem;
+$MediumLetterSpacing: 0.4rem;
+$Rfont-style: 'Roboto', sans-serif;
+$light-border-color: #f1faee;
+$Search-bar-height: 2rem;
+$Search-button-width: 7rem;
+$Search-button-BC: #023047;
+$Hover-border-color: #90e0ef;
+$Single-image-widht: 220px;
+$Single-image-height: 140px;
+$Error-red: red;
+/////////////////////////////////////////////
+
+//////////////  common includs for styles
+%Search-button-style {
+  display: inline-block;
+  border-radius: 8px;
+  height: $Search-bar-height;
+}
+
+//////////////////////////////////////////////////
+
+// main style
+
+// heading style
+.headingContainer {
+  background: $PrimaryBG;
+  // height: 20vh;
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+  .heading {
+    color: $PrimaryFontColor;
+    font-size: $Big-fontSize;
+    text-align: center;
+    letter-spacing: $MediumLetterSpacing;
+    font-family: $Rfont-style;
+  }
+}
+
+// input style
+.searchForm {
+  text-align: center;
+
+  .searchText {
+    @extend %Search-button-style;
+    width: 50%;
+    font-family: $Rfont-style;
+    font-size: $Small-fontSize;
+    border: 1px solid black;
+    background: $white;
+    transition: all 0.3s ease-in-out;
+    &:focus {
+      border-color: $Hover-border-color;
+    }
+  }
+
+  .submitButton {
+    @extend %Search-button-style;
+    position: relative;
+    width: $Search-button-width;
+    right: ($Search-button-width + 0.2rem);
+    top: 0.1rem;
+    background: $Search-button-BC;
+    color: $white;
+    font-size: $Small-fontSize;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      background-color: lighten($Search-button-BC, 20%);
+      color: darken($white, 20%);
+    }
+  }
+}
+
+// image layout and images
+
+.ImagesContainer {
+  border: 1px solid black;
+  margin: 1rem;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+
+  img {
+    width: $Single-image-widht;
+    height: $Single-image-height;
+    display: inline-block;
+    object-fit: fill;
+    display: inline-block;
+    margin: 1.5rem 1rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.notFoundIcon {
+  display: block;
+  height: 30vh;
+  width: 30vh;
+  margin: auto;
+  color: $Error-red;
+  margin-top: 5rem;
+}
+
+.notFoundMassege {
+  text-align: center;
+  color: $Error-red;
+}
+
+.loadingStyle {
+  .css-1d91s51 {
+    .css-19fmomo,
+    .css-sjlgy6 {
+      display: block;
+      width: 30vw;
+      height: 30vh;
+      margin: auto;
+    }
+  }
+}

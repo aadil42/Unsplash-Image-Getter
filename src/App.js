@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useReducer } from 'react';
+import { myState, state } from './Context';
+import Heading from './FComponents/Heading';
+// import SearchBar from './FComponents/Search-bar';
+import ImageLayout from './FComponents/ImagesLayout';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// import Loader from 'react-loader-spinner';
+
+
+// importing css 
+import './MyCss/myStyle.scss';
+
+
+const App = () => {
+
+const { reducer } = state;
+const [initialState, dispatch] = useReducer(reducer, state); 
+
+console.log(initialState.isLoading);
+  return(
+    <myState.Provider value={initialState}>
+       <Heading />
+       <ImageLayout />       
+       {/* <Loader type="ThreeDots" color="#00BFFF" height={80} width={100 * 19.2}  /> */}
+    </myState.Provider>
+  )
+
 }
 
+// export {state};
 export default App;
