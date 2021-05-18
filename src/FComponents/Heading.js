@@ -1,23 +1,11 @@
-import { useContext, useReducer } from 'react';
-import { myState } from '../Context';
-// import {state} from '../App';
 
-const Heading = () => {
+const Heading = ({initialState}) => {
 
-  const  FetchedState  = useContext(myState);
-  const { reducer } = FetchedState;
-  const [initialState, dispatch] = useReducer(reducer, FetchedState);
-  console.log(initialState);
-  
-  const handleClick = () => {
-  dispatch({type: 'ok'});
-  }
-
-
+  const { applicationName } = initialState;
   return (
     <>
     <div className="headingContainer">
-      <h2 className="heading" onClick={handleClick}> {initialState.applicationName} </h2>         
+      <h2 className="heading"> {applicationName} </h2>         
     </div>
     </>
   );

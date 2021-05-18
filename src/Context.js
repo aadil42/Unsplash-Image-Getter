@@ -4,33 +4,74 @@ import React from 'react';
 const reducer = (state, action) => {
 
  switch(action.type) {
-   case "fetchImages" :
-    return {...state, imagesArr: action.data, isLoading: false, querySuccess: true}
+   case "FETCH_IMAGES" :
+    return { 
+      ...state, 
+      imagesArr: action.data,
+      isLoading: false, 
+      querySuccess: true, 
+      rendering_initially: false,
+    }
 
-   case "initialRender": 
-    return {...state, imagesArr: action.data, isLoading: false, querySuccess: true}
+   case "RENDER_INITIALLY": 
+    return {
+      ...state,
+       imagesArr: action.data,
+       isLoading: false,
+       querySuccess: true,
+       }
   
-    case "resultNotFound":
-      return {...state, querySuccess: false, isLoading: false}
+    case "RESULT_NOT_FOUND":
+      return {
+        ...state,
+        querySuccess: false,
+        isLoading: false,
+        curruntQuery: action.curruntQuery
+      }
  
-    case "showLoader":
-      return {...state, isLoading: true}
+    case "SHOW_LOADER":
+      return {
+        ...state,
+        isLoading: true,
+        querySuccess: false
+        }
 
     default :
-       return {state}  
+       return state;  
  }
+}
+
+// checks fetched images
+function checkFetchedImages(actionType, response, dispatch, textInput = "") {
+
+  if(response.total > 0) {
+    dispatch({type: actionType, data: response.results});
+  } else if(parseInt(response.total) === 0) {
+    dispatch({type: "RESULT_NOT_FOUND", curruntQuery: textInput});
+  } 
+}
+
+const Action = {
+
+ FETCH_IMAGES: 'FETCH_IMAGES',
+ RENDER_INITIALLY: 'RENDER_INITIALLY',
+ RESULT_NOT_FOUND: 'RESULT_NOT_FOUND',
+ SHOW_LOADER: 'SHOW_LOADER',
 }
 
 const state = {
   ApiUrl: `https://api.unsplash.com/search/photos?query=`,
   query: `"london"`,
+  curruntQuery: '',
   client_id: `&client_id=icX6L7nX2IPHJTBm-wvIUvSUbBKi386AKavHF_MNYto`,
-  applicationName: 'Unsplash-Image-Getter',
+  applicationName: 'TryNewStuff',
   imagesArr: [],
+  rendering_initially: true,
   isLoading: true,
   querySuccess: true, 
-  notFoundMassege: 'Sorry, Image cannot be found',
-  reducer
+  reducer,
+  checkFetchedImages, 
+  Action
 }
 
 const myState = React.createContext(state);

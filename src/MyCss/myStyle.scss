@@ -26,10 +26,16 @@ $Search-bar-height: 2rem;
 $Search-button-width: 7rem;
 $Search-button-BC: #023047;
 $Hover-border-color: #90e0ef;
-$Single-image-widht: 220px;
-$Single-image-height: 140px;
+$Single-image-widht: 250px;
+$Single-image-height: 170px;
 $Error-red: red;
+$black: black;
 /////////////////////////////////////////////
+
+//////////// globle style
+* {
+  font-family: sans-serif;
+}
 
 //////////////  common includs for styles
 %Search-button-style {
@@ -100,28 +106,30 @@ $Error-red: red;
 // image layout and images
 
 .ImagesContainer {
-  border: 1px solid black;
   margin: 1rem;
   padding: 0.5rem;
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  a {
+    color: $black;
+    img {
+      width: $Single-image-widht;
+      height: $Single-image-height;
+      display: inline-block;
+      object-fit: fill;
+      margin: 1.5rem 1rem;
+      border-radius: 5px;
 
-  img {
-    width: $Single-image-widht;
-    height: $Single-image-height;
-    display: inline-block;
-    object-fit: fill;
-    display: inline-block;
-    margin: 1.5rem 1rem;
-
-    &:hover {
-      cursor: pointer;
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }
 
-.notFoundIcon {
+.notFoundIcon,
+.connecitonErrorIcon {
   display: block;
   height: 30vh;
   width: 30vh;
@@ -135,14 +143,14 @@ $Error-red: red;
   color: $Error-red;
 }
 
-.loadingStyle {
-  .css-1d91s51 {
-    .css-19fmomo,
-    .css-sjlgy6 {
-      display: block;
-      width: 30vw;
-      height: 30vh;
-      margin: auto;
-    }
-  }
+.connectionErrorMassage,
+.notFoundErrorMassage {
+  text-align: center;
+  letter-spacing: $MediumLetterSpacing;
+  color: $PrimaryBG;
+  font-size: $Big-fontSize;
+}
+
+.WrongQuery {
+  color: $Error-red;
 }
