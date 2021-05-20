@@ -1,10 +1,12 @@
 import React, { useReducer } from 'react';
-import { myState, state } from './Context';
+import { state } from './Context';
 import Heading from './FComponents/Heading';
 import SearchBar from './FComponents/SearchBar';
 import ImageLayout from './FComponents/ImagesLayout';
 import NotFound from './FComponents/NotFound';
 import MyLoader from './FComponents/MyLoader';
+import ConnectionError from './FComponents/ConnectionError';
+import NumericPageButtons from './FComponents/NumericPageButtons';
 
 // importing css 
 import './MyCss/myStyle.scss';
@@ -15,18 +17,20 @@ const App = () => {
 
 const { reducer } = state;
 const [initialState, dispatch] = useReducer(reducer, state); 
-const {isLoading, querySuccess } = initialState;
+const {isLoading, querySuccess, network_error } = initialState;
 
   return(
-    <myState.Provider value={initialState}>
-       <Heading initialState={initialState}/>
-       <SearchBar initialState={initialState} dispatch={dispatch} />
-       {isLoading && <MyLoader initialState={initialState} dispatch={dispatch}/>}  
-       {querySuccess && <ImageLayout initialState={initialState} dispatch={dispatch} />}
-       {!querySuccess && !isLoading && <NotFound initialState={initialState}/> }
-    </myState.Provider> 
+      <> 
+
+        <Heading initialState={initialState}/>
+        <SearchBar initialState={initialState} dispatch={dispatch} />
+        {isLoading && <MyLoader/> }  
+        {querySuccess && <ImageLayout initialState={initialState} dispatch={dispatch} />}        
+        {!querySuccess && !isLoading && !network_error && <NotFound initialState={initialState}/> }
+        {network_error && <ConnectionError />}
+        {querySuccess && <NumericPageButtons initialState={initialState} dispatch={dispatch} />}
+      </>
   );
 }
 
-// export {state};
 export default App;

@@ -44,6 +44,10 @@ $black: black;
   height: $Search-bar-height;
 }
 
+%Hover-style {
+  cursor: hover;
+}
+
 //////////////////////////////////////////////////
 
 // main style
@@ -76,7 +80,6 @@ $black: black;
     width: 50%;
     font-family: $Rfont-style;
     font-size: $Small-fontSize;
-    border: 1px solid black;
     background: $white;
     transition: all 0.3s ease-in-out;
     &:focus {
@@ -89,7 +92,6 @@ $black: black;
     position: relative;
     width: $Search-button-width;
     right: ($Search-button-width + 0.2rem);
-    top: 0.1rem;
     background: $Search-button-BC;
     color: $white;
     font-size: $Small-fontSize;
@@ -122,7 +124,7 @@ $black: black;
       border-radius: 5px;
 
       &:hover {
-        cursor: pointer;
+        @extend %Hover-style;
       }
     }
   }
@@ -153,4 +155,21 @@ $black: black;
 
 .WrongQuery {
   color: $Error-red;
+}
+
+.slide-bar {
+  display: block;
+  width: 20%;
+  margin: auto;
+  padding: 1rem;
+}
+
+.page-buttons {
+  display: inline-block;
+  padding: 0.5rem;
+  border-radius: 3px;
+
+  &:hover {
+    @extend %Hover-style;
+  }
 }

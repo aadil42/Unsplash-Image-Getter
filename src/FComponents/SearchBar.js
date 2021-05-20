@@ -1,7 +1,13 @@
 
 export default function SearchBar({initialState, dispatch}) {
 
-  const { checkFetchedImages, Action, ApiUrl, client_id } = initialState;
+  const { 
+     checkFetchedImages,
+     Action, 
+     ApiUrl, 
+     client_id,
+     currunt_page,
+     per_page } = initialState;
 
   function showLoaderUntilFetching(inputText = "") {
     dispatch({type: Action.SHOW_LOADER});
@@ -9,9 +15,15 @@ export default function SearchBar({initialState, dispatch}) {
   }
 
   async function handleSubmit(inputText = null) {
-    let response = await fetch(ApiUrl.concat(inputText.concat(client_id)));
-    response = await response.json();
-    checkFetchedImages(Action.FETCH_IMAGES, response, dispatch, inputText);
+
+    try {
+      let response = await fetch(ApiUrl.concat(inputText.concat(`&page=${currunt_page}&per_page=${per_page}`).concat(client_id)));
+      response = await response.json();
+      checkFetchedImages(Action.FETCH_IMAGES, response, dispatch, inputText);
+    } catch(e) {
+      console.log(e)
+       dispatch({type: Action.NETWORK_ERROR});
+    }
   }
 
   return (
@@ -21,11 +33,10 @@ export default function SearchBar({initialState, dispatch}) {
     
     const inputText = document.querySelector('.searchText').value;
     showLoaderUntilFetching(inputText);
-  }}>
+  }}> 
    <input type="text" className="searchText" />
    <input type="submit" className ="submitButton" value="Search" />   
  </form> 
-
     </>
   )
 }

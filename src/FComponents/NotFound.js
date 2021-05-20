@@ -8,7 +8,7 @@ const NotFound = ({initialState}) => {
     <>
     <MdSentimentVeryDissatisfied className="notFoundIcon" />
     <h1 className="notFoundErrorMassage">sorry can't found anyhting with
-     <span className="WrongQuery">{curruntQuery}</span> </h1>
+     <span className="WrongQuery"> "{curruntQuery}" </span> </h1>
     </>
   );
 }

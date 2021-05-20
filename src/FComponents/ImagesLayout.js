@@ -11,7 +11,9 @@ const {
   Action, ApiUrl, 
   client_id, 
   imagesArr,
-  query } = initialState;
+  Defaultquery,
+  per_page,
+  currunt_page } = initialState;
 
 
 // fetches images initially when component renders
@@ -19,13 +21,22 @@ useEffect(() => {
 
   async function fetchImages() {
     if(rendering_initially) {
-      let response = await fetch(ApiUrl.concat(query.concat(client_id)));
-      response = await response.json();
-      checkFetchedImages(Action.RENDER_INITIALLY, response, dispatch);  
+
+      try {
+        let response = await fetch(ApiUrl.concat(Defaultquery.concat(`&page=${currunt_page}&per_page=${per_page}`).concat(client_id)));
+        response = await response.json();
+        console.log(response);
+        checkFetchedImages(Action.RENDER_INITIALLY, response, dispatch);  
+      } catch(e) {
+
+        console.log(e);
+        dispatch({type: Action.NETWORK_ERROR})
+      }
     }
   }
 
-  fetchImages();
+fetchImages();
+
 }, []);
 
 
@@ -37,7 +48,7 @@ return (
       return(
         <> 
         <a key={index} href={element.links.html} target="_blank">
-        <img src={element.urls.regular} alt="unsplashImage"/>
+        <img src={element.urls.regular} alt={element.alt_description}/>
         </a>
         </>
       ); 
