@@ -6,7 +6,6 @@ import ImageLayout from './FComponents/ImagesLayout';
 import NotFound from './FComponents/NotFound';
 import MyLoader from './FComponents/MyLoader';
 import ConnectionError from './FComponents/ConnectionError';
-import NumericPageButtons from './FComponents/NumericPageButtons';
 
 // importing css 
 import './MyCss/myStyle.scss';
@@ -21,14 +20,12 @@ const {isLoading, querySuccess, network_error } = initialState;
 
   return(
       <> 
-
         <Heading initialState={initialState}/>
         <SearchBar initialState={initialState} dispatch={dispatch} />
         {isLoading && <MyLoader/> }  
         {querySuccess && <ImageLayout initialState={initialState} dispatch={dispatch} />}        
         {!querySuccess && !isLoading && !network_error && <NotFound initialState={initialState}/> }
         {network_error && <ConnectionError />}
-        {querySuccess && <NumericPageButtons initialState={initialState} dispatch={dispatch} />}
       </>
   );
 }

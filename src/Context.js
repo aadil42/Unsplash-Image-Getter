@@ -8,6 +8,7 @@ const reducer = (state, action) => {
       imagesArr: action.data.results,
       isLoading: false, 
       querySuccess: true, 
+      curruntQuery: action.curruntQuery,
       rendering_initially: false,
       network_error: false,
       total_pages: action.data.total_pages
@@ -60,7 +61,7 @@ const reducer = (state, action) => {
 function checkFetchedImages(actionType, response, dispatch, textInput = "") {
 
   if(response.total > 0) {
-    dispatch({type: actionType, data: response});
+    dispatch({type: actionType, data: response, curruntQuery: textInput});
   } else if(parseInt(response.total) === 0) {
     dispatch({type: "RESULT_NOT_FOUND", curruntQuery: textInput});
   } 
@@ -81,7 +82,6 @@ const state = {
   client_id: `&client_id=icX6L7nX2IPHJTBm-wvIUvSUbBKi386AKavHF_MNYto`,
   applicationName: 'TryNewStuff',
   currunt_page: 1,
-  total_pages: 0,
   per_page: 25,
   imagesArr: [],
   rendering_initially: true,
@@ -89,6 +89,14 @@ const state = {
   querySuccess: true, 
   reducer,
   checkFetchedImages, 
+  keyWords: [
+    "Technology",
+    "Network",
+    "Computer",
+    "Codding",
+    "Human",
+    "Business"
+  ],
   Action,
   network_error: false
 }
