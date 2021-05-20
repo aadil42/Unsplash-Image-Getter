@@ -6,7 +6,6 @@ import ImageLayout from './FComponents/ImagesLayout';
 import NotFound from './FComponents/NotFound';
 import MyLoader from './FComponents/MyLoader';
 import ConnectionError from './FComponents/ConnectionError';
-
 // importing css 
 import './MyCss/myStyle.scss';
 

@@ -1,5 +1,5 @@
 
-// this is the reducer it's where all your action will be executed 
+// this is the reducer this is where all your action will be executed 
 const reducer = (state, action) => {
  switch(action.type) {
    case "FETCH_IMAGES" :
@@ -77,11 +77,12 @@ const Action = {
 }
 
 const state = {
-  ApiUrl: `https://api.unsplash.com/search/photos?query=`,
+  ApiUrl: `https://api.unsplash.com/search/`,
   Defaultquery: `"london"`,
   client_id: `&client_id=icX6L7nX2IPHJTBm-wvIUvSUbBKi386AKavHF_MNYto`,
   applicationName: 'TryNewStuff',
   currunt_page: 1,
+  curruntQuery: '',
   per_page: 25,
   imagesArr: [],
   rendering_initially: true,
