@@ -17,11 +17,11 @@ export default function SearchBar({initialState, dispatch}) {
   async function handleSubmit(inputText = null) {
 
     try {
-      let response = await fetch(ApiUrl.concat(inputText.concat(`&page=${currunt_page}&per_page=${per_page}`).concat(client_id)));
+      let response = await fetch(ApiUrl.concat('photos?query=').concat(inputText.concat(`&page=${currunt_page}&per_page=${per_page}`).concat(client_id)));
       response = await response.json();
       checkFetchedImages(Action.FETCH_IMAGES, response, dispatch, inputText);
     } catch(e) {
-      console.log(e)
+      console.log(e);
        dispatch({type: Action.NETWORK_ERROR});
     }
   }

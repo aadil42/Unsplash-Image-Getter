@@ -90,14 +90,6 @@ const state = {
   querySuccess: true, 
   reducer,
   checkFetchedImages, 
-  keyWords: [
-    "Technology",
-    "Network",
-    "Computer",
-    "Codding",
-    "Human",
-    "Business"
-  ],
   Action,
   network_error: false
 }

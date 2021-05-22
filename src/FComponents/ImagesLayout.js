@@ -1,8 +1,5 @@
 import { useEffect } from 'react';
 
-
-
-
 const ImageLayout = ({dispatch, initialState}) => {
 
 const { 
@@ -23,9 +20,8 @@ useEffect(() => {
     if(rendering_initially) {
 
       try {
-        let response = await fetch(ApiUrl.concat(Defaultquery.concat(`&page=${currunt_page}&per_page=${per_page}`).concat(client_id)));
+        let response = await fetch(ApiUrl.concat('photos?query=').concat(Defaultquery.concat(`&page=${currunt_page}&per_page=${per_page}`).concat(client_id)));
         response = await response.json();
-        console.log(response);
         checkFetchedImages(Action.RENDER_INITIALLY, response, dispatch);  
       } catch(e) {
 
