@@ -1,18 +1,3 @@
-// use variables starting with $variable_name
-// use nesting instaed of ul li a { your style for a tag}
-// use @use_fileName of diffrent css components in main css file
-// use mixins and functions
-// use extends to extends base style in diffrent style blocks  and the block you extend; start the block_name with %
-// use operator to calculate diffrent things
-// use if else statments with mixins
-// use lighten and darken function to make elements dark and light it takes 2 arguments lighten(style, percentOfLightning_darkening)
-// use lightness and darkness function to check the percentage of lightness and darkness
-// use eachLoop in sass yes you can use loops in sass..!!
-
-// note : & inside of a nested style refers to the parent class/id/tag/etc name
-// note : when you make a scss component and bring it in the main file you need to name that file starting with '_'
-// so all the files can't get compile and only one main file will get compile
-
 // style variables///////////////////////////////////////////////////////////////////////////////
 $PrimaryBG: #023047;
 $PrimaryFontColor: #f1faee;
