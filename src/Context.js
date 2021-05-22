@@ -80,7 +80,7 @@ const state = {
   ApiUrl: `https://api.unsplash.com/search/`,
   Defaultquery: `"london"`,
   client_id: `&client_id=icX6L7nX2IPHJTBm-wvIUvSUbBKi386AKavHF_MNYto`,
-  applicationName: 'TryNewStuff',
+  applicationName: 'Unsplash-Image-Getter',
   currunt_page: 1,
   curruntQuery: '',
   per_page: 25,
