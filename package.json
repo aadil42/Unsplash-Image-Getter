@@ -1,10 +1,10 @@
 {
+  "homepage": "http://aadil42.github.io/Unsplash-Image-Getter",
   "name": "image-getter-unsplash",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "@emotion/core": "^10.1.1",
-    "@material-ui/core": "^4.11.4",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
@@ -18,6 +18,8 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -42,6 +44,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^3.1.0",
     "node-sass": "^6.0.0"
   }
 }
